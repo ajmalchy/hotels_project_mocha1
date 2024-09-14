@@ -46,12 +46,12 @@ describe('Sprint 1', () => {
         await signinPage.invalidEmailErrorIsDisplayed();
     })
 // Verify Child-age dropdowns are same as number of Children selected
-    it.only('User clicks on the travelers btn', async () => {
+    it('User clicks on the travelers btn', async () => {
         await landingPage.clickTravelersBtn();
         await browser.pause(5000);
     })
 
-    it.only('User selects children as 2', async () => {
+    it('User selects children as 2', async () => {
         let previousChildrenCount;
         previousChildrenCount = await landingPage.getChildrenNumberValue();
         if (previousChildrenCount == 0) {
@@ -79,7 +79,7 @@ describe('Sprint 1', () => {
         const actualDropDownCount = await landingPage.getVisibleChildrenDropdownCount();
         expect(actualDropDownCount).to.equal(2)
     })
-    it.only('User verifies that the plus btn is enabled', async () => {
+    it('User verifies that the plus btn is enabled', async () => {
         const isButtonEnabled = await landingPage.isButtonEnabled("Plus");
         const expectedState = "enabled";
 
@@ -89,7 +89,7 @@ describe('Sprint 1', () => {
             expect(isButtonEnabled).to.be.false;
         }
     })
-    it.only('User verifies that the minus btn is enabled', async () => {
+    it('User verifies that the minus btn is enabled', async () => {
         const isButtonEnabled = await landingPage.isButtonEnabled("Minus");
         const expectedState = "enabled";
 
@@ -100,7 +100,7 @@ describe('Sprint 1', () => {
         }
     })
 
-    it.only('User selects children as 6', async () => {
+    it('User selects children as 6', async () => {
         let previousChildrenCount;
         previousChildrenCount = await landingPage.getChildrenNumberValue();
         if (previousChildrenCount == 0) {
@@ -124,7 +124,7 @@ describe('Sprint 1', () => {
         }
     })
 
-    it.only('User verifies that the plus btn is disabled', async () => {
+    it('User verifies that the plus btn is disabled', async () => {
         const isButtonEnabled = await landingPage.isButtonEnabled("Plus");
         const expectedState = "disabled";
 
@@ -135,7 +135,7 @@ describe('Sprint 1', () => {
         }
     })
 
-    it.only('User verifies that the minus btn is enabled', async () => {
+    it('User verifies that the minus btn is enabled', async () => {
         const isButtonEnabled = await landingPage.isButtonEnabled("Minus");
         const expectedState = "enabled";
 
@@ -146,7 +146,7 @@ describe('Sprint 1', () => {
         }
     })
 
-    it.only('User selects children as 5', async () => {
+    it('User selects children as 5', async () => {
         let previousChildrenCount;
         previousChildrenCount = await landingPage.getChildrenNumberValue();
         if (previousChildrenCount == 0) {
@@ -169,7 +169,7 @@ describe('Sprint 1', () => {
             }
         }
     })
-    it.only('User verifies that the plus btn is enabled', async () => {
+    it('User verifies that the plus btn is enabled', async () => {
         const isButtonEnabled = await landingPage.isButtonEnabled("Plus");
         const expectedState = "enabled";
 
@@ -179,7 +179,7 @@ describe('Sprint 1', () => {
             expect(isButtonEnabled).to.be.false;
         }
     })
-    it.only('User verifies that the minus btn is enabled', async () => {
+    it('User verifies that the minus btn is enabled', async () => {
         const isButtonEnabled = await landingPage.isButtonEnabled("Minus");
         const expectedState = "enabled";
 
@@ -190,7 +190,7 @@ describe('Sprint 1', () => {
         }
     })
 
-    it.only('User selects children as 0', async () => {
+    it('User selects children as 0', async () => {
         let previousChildrenCount;
         previousChildrenCount = await landingPage.getChildrenNumberValue();
         if (previousChildrenCount == 0) {
@@ -213,11 +213,11 @@ describe('Sprint 1', () => {
             }
         }
     })
-    it.only('User verifies that Children age dropdowns are not displayed', async () => {
+    it('User verifies that Children age dropdowns are not displayed', async () => {
         const isDropdownDisplayed = await landingPage.isChildrenDropdownDisplayed();
         expect(await isDropdownDisplayed).to.be.false;
     })
-    it.only('User verifies that the plus btn is enabled', async () => {
+    it('User verifies that the plus btn is enabled', async () => {
         const isButtonEnabled = await landingPage.isButtonEnabled("Plus");
         const expectedState = "enabled";
 
@@ -227,7 +227,7 @@ describe('Sprint 1', () => {
             expect(isButtonEnabled).to.be.false;
         }
     })
-    it.only('User verifies that the minus btn is disabled', async () => {
+    it('User verifies that the minus btn is disabled', async () => {
         const isButtonEnabled = await landingPage.isButtonEnabled("Minus");
         const expectedState = "disabled";
 
@@ -236,6 +236,44 @@ describe('Sprint 1', () => {
         } else if (expectedState === "disabled") {
             expect(isButtonEnabled).to.be.false;
         }
+    })
+
+    // Verify language can be changed successfully
+    it.only('User clicks on the English language', async () => {
+        await landingPage.clickLanguageBtn();
+        await browser.pause(2000);
+    })
+
+    it.only('User selects Espanol in the language dropdown', async () => {
+        await landingPage.clickLanguageDropdown();
+        await landingPage.selectLanguage('Español (Estados Unidos)');
+        await browser.pause(2000);
+    })
+    it.only('User clicks on the Save btn', async () => {
+        await landingPage.clickSaveLanguage('Save');
+    })
+    it.only('User verifies that the selected language Espanol is displayed on the homepage', async () => {
+        await browser.pause(3000);
+        const isLanguageDisplayed = await landingPage.isLanguageDisplayed('Español');
+        expect(isLanguageDisplayed).to.be.true;
+    })
+
+    it.only('User clicks on the Espanol language', async () => {
+        await landingPage.clickEspanolBtn()
+    })
+    it.only('User selects English in the language dropdown', async () => {
+        await landingPage.clickLanguageDropdown();
+        await landingPage.selectLanguage('English (United States)');
+        await browser.pause(2000);
+    })
+    it.only('User clicks on the Guardar btn', async () => {
+        await landingPage.clickSaveLanguage('Guardar');
+    })
+
+    it.only('User verifies that the selected language English is displayed on the homepage', async () => {
+        await browser.pause(3000);
+        const isLanguageDisplayed = await landingPage.isLanguageDisplayed('English');
+        expect(isLanguageDisplayed).to.be.true;
     })
 })
 

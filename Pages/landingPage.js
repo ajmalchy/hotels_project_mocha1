@@ -22,6 +22,18 @@ class Landingpage {
     dropDownOptions_start = '//select[@class="uitk-field-select"]//option[text()="';
     dropDownOptions_end = '"]';
     childrenNumberLocator = '//input[@id="traveler_selector_children_step_input-0"]';
+
+    languageBtnLocator = '//button[@data-stid="button-type-picker-trigger"]';
+
+    languageDropdownLocator = '//select[@id="language-selector"]';
+
+    optionEnglishLocator = '//select[@id="language-selector"]//option[text()="English (United States)"]'
+    optionEspanolLocator = '//select[@id="language-selector"]//option[text()="Español (Estados Unidos)"]';
+
+    saveEnglishLocator = '//button[text()="Save"]';
+    saveGuardarLocator = '//button[text()="Guardar"]';
+    homeEspanolLocator = '//button[text()="Español"]';
+    homeEnglishLocator = '//button[text()="English"]';
     // user clicks on trademark
   
     // functions to interact with the elements on landing page
@@ -90,6 +102,7 @@ class Landingpage {
         }
     }
 
+    // user verifies that plus and minus btn are enabled or disabled
     async isButtonEnabled(buttonType) {
         let buttonSelector;
         if (buttonType == 'Plus') {
@@ -99,9 +112,63 @@ class Landingpage {
         }
         const buttonElement = await $(buttonSelector);
         return await buttonElement.isEnabled();
-
     }
+     // Verify language can be changed successfully
+ async clickLanguageBtn () {
+    
+    await $(this.languageBtnLocator).click();
+ }
 
+ async clickLanguageDropdown () {
+    
+    await $(this.languageDropdownLocator).click();
+ }
+
+ async selectLanguage(language) {
+    switch (language) {
+        case 'Español (Estados Unidos)':
+            await $(this.optionEspanolLocator).click();
+            break;
+        case 'English (United States)':
+            await $(this.optionEnglishLocator).click();
+            break;
+    
+        default:
+            break;
+    }
+ }
+ async clickSaveLanguage(saveLanguage) {
+    switch (saveLanguage) {
+        case 'Save':
+            await $(this.saveEnglishLocator).click();
+            break;
+        case 'Guardar':
+            await $(this.saveGuardarLocator).click();
+            break;
+    
+        default:
+            break;
+    }
+ }
+
+ async isLanguageDisplayed(language) {
+    switch (language) {
+        case 'Español':
+        const displayedLanguage =await $(this.homeEspanolLocator).getText();
+            return displayedLanguage === language;
+           
+        case 'English':
+            const displayedLanguage1 = await $(this.homeEnglishLocator).getText();
+            return displayedLanguage1 === language;
+            
+    
+        default:
+            return false;
+    }
+ }
+ async clickEspanolBtn() {
+    await $(this.homeEspanolLocator).click();
+ }
 }
 
 module.exports = new Landingpage;
