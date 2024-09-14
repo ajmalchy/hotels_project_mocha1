@@ -34,7 +34,8 @@ class Landingpage {
     saveGuardarLocator = '//button[text()="Guardar"]';
     homeEspanolLocator = '//button[text()="Español"]';
     homeEnglishLocator = '//button[text()="English"]';
-    // user clicks on trademark
+
+    listYourPropertyLocator = '//a[@data-stid="listYourProperty-link"]';
   
     // functions to interact with the elements on landing page
     // user clicing trademark to reload the page to get rid of all the unnecessary popups 
@@ -168,6 +169,9 @@ class Landingpage {
  }
  async clickEspanolBtn() {
     await $(this.homeEspanolLocator).click();
+ }
+ async clickListYourProperty() {
+    await $(this.listYourPropertyLocator).click();
  }
 }
 
