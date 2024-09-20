@@ -28,6 +28,30 @@ describe('login page testing', () => {
 
     })
 
+    it.only('Enter name and email address and click signup btn', async () => {
+        /**
+         * 1. user goes to automation website
+         * 2.user click signup or login btn and go to that page
+         * 3. user enters name and email address
+         * 4. User clicks signup btn
+         */
+        // user goes to automation website
+        await browser.url('https://automationexercise.com/');
+        await browser.pause(3000);
 
+        // user clicks signup btn
+        await automationlandingPage.clickSignupOrLoginBtn();
+        await browser.pause(2000);
+
+        // user enters name and email address
+
+        await automationLoginPage.enterNewUserName("Kamla Shundori");
+
+        await automationLoginPage.enterNewUserEmail("kamlaShundori@yahoo.com");
+       
+        // user clicks signup btn
+        await automationLoginPage.clickSignupBtn();
+        await browser.pause(3000);
+    })
 
 })
