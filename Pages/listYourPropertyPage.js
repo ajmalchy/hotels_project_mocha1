@@ -5,36 +5,48 @@ class ListYourPropertyPage {
     textLodgingLocator = '//p[text()="Lodging"]';
     textPrivateResidenceLocator = '//p[text()="Private residence"]';
 
-    privateResidenceBtnLocator = '//div[@id="classification_privateResidence"]';
+    privateResidenceBtnLocator = '//p[text()="Private residence"]';
     // functions to interact with the page
     async isWhatWouldYouLikeToListDisplayed() {
-        const textListDisplayed = await $(this.whatWouldYouLikeToListLocator).getText();
-
-        if (textListDisplayed === "What would you like to list" && await $(this.whatWouldYouLikeToListLocator).isDisplayed()) {
+        const textList = await $(this.whatWouldYouLikeToListLocator);
+        await textList.waitForDisplayed({ timeout: 5000 });
+        
+        const textListDisplayed = await textList.getText(); // Await getText()
+    
+        if (textListDisplayed === "What would you like to list?" && await textList.isDisplayed()) {
             return true;  // If the text matches and the element is displayed, return true
         }
         return false; 
     }
 
     async isLodgingDisplayed() {
-        const textLodgingDisplayed = await $(this.textLodgingLocator).getText();
+        const textLodging = await $(this.textLodgingLocator);
+        const textLodgingDisplayed = await textLodging.getText();
 
-        if (textLodgingDisplayed === "Lodging" && await $(this.textLodgingLocator).isDisplayed()) {
+        if (textLodgingDisplayed === "Lodging" && await textLodging.isDisplayed()) {
             return true;  // If the text matches and the element is displayed, return true
         }
         return false; 
     }
     async isPrivateResidenceDisplayed() {
-        const textPrivateResidenceDisplayed = await $(this.textPrivateResidenceLocator).getText();
+        const textPrivateResidence = await $(this.textPrivateResidenceLocator);
+        const textPrivateResidenceDisplayed = await textPrivateResidence.getText();
 
-        if (textPrivateResidenceDisplayed === "Private residence" && await $(this.textPrivateResidenceLocator).isDisplayed()) {
+        if (textPrivateResidenceDisplayed === "Private residence" && await textPrivateResidence.isDisplayed()) {
             return true;  // If the text matches and the element is displayed, return true
         }
         return false; 
     }
-
+// problem
     async clickPrivateResidence() {
-        await $(this.privateResidenceBtnLocator).click(); 
+        try {
+            const privateResidenceBtn = await $(this.privateResidenceBtnLocator);
+            await privateResidenceBtn.waitForDisplayed({ timeout: 5000 });  // Ensure the element is displayed
+           
+            await privateResidenceBtn.click();   // Perform the click action
+        } catch (error) {
+            console.error("Error clicking Private Residence button:", error);
+        }
     }
 
 

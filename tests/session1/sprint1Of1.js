@@ -2,6 +2,7 @@ const { expect } = require("chai");
 const landingPage = require("../../Pages/landingPage");
 const signinPage = require("../../Pages/signinPage");
 const listYourPropertyPage = require("../../Pages/listYourPropertyPage");
+const privateResidencePage = require("../../Pages/privateResidencePage");
 
 // refer test suite
 describe('Sprint 1', () => {
@@ -48,12 +49,12 @@ describe('Sprint 1', () => {
         await signinPage.invalidEmailErrorIsDisplayed();
     })
 // Verify Child-age dropdowns are same as number of Children selected
-    it('User clicks on the travelers btn', async () => {
+    it.only('User clicks on the travelers btn', async () => {
         await landingPage.clickTravelersBtn();
         await browser.pause(5000);
     })
 
-    it('User selects children as 2', async () => {
+    it.only('User selects children as 2', async () => {
         let previousChildrenCount;
         previousChildrenCount = await landingPage.getChildrenNumberValue();
         if (previousChildrenCount == 0) {
@@ -76,169 +77,184 @@ describe('Sprint 1', () => {
             }
         }
     })
-// problem
-    it('User verifies that Children-age dropwdowns are 2', async () => {
-        const actualDropDownCount = await landingPage.getVisibleChildrenDropdownCount();
-        expect(actualDropDownCount).to.equal(2)
-    })
-    it('User verifies that the plus btn is enabled', async () => {
-        const isButtonEnabled = await landingPage.isButtonEnabled("Plus");
-        const expectedState = "enabled";
 
-        if (expectedState === "enabled") {
-            expect(isButtonEnabled).to.be.true;
-        } else if (expectedState === "disabled") {
-            expect(isButtonEnabled).to.be.false;
-        }
-    })
-    it('User verifies that the minus btn is enabled', async () => {
-        const isButtonEnabled = await landingPage.isButtonEnabled("Minus");
-        const expectedState = "enabled";
+    // it.only('User verifies that Children-age dropwdowns are 2', async () => {
+    //     await browser.url('https://www.hotels.com/')
+    //     await browser.pause(5000);
+    //     await landingPage.clickTradeMarkToRefresh();
+    //     await browser.maximizeWindow();
+    //     await browser.pause(4000);
+        
 
-        if (expectedState === "enabled") {
-            expect(isButtonEnabled).to.be.true;
-        } else if (expectedState === "disabled") {
-            expect(isButtonEnabled).to.be.false;
-        }
-    })
+    //     await landingPage.clickTravelersBtn();
+    //     await browser.pause(5000);
 
-    it('User selects children as 6', async () => {
-        let previousChildrenCount;
-        previousChildrenCount = await landingPage.getChildrenNumberValue();
-        if (previousChildrenCount == 0) {
-            for (let i = 0; i < 6; i++) {
-                await landingPage.clickChildrenBtnPlus();
-                await browser.pause(2000);
-            }
-        } else if
-            (previousChildrenCount < 6) {
-            const toIncrease = 6 - previousChildrenCount;
-            for (let i = 0; i < toIncrease; i++) {
-                await landingPage.clickChildrenBtnPlus();
-                await browser.pause(2000);
-            }
-        } else {
-            const toDecrease = previousChildrenCount - 6;
-            for (let i = 0; i < toDecrease; i++) {
-                await landingPage.clickChildrenBtnMinus();
-                await browser.pause(2000);
-            }
-        }
-    })
+    //     await landingPage.clickChildrenBtnPlus();
+    //     await browser.pause(2000);
+    //     await landingPage.clickChildrenBtnPlus();
+    //     await browser.pause(2000);
 
-    it('User verifies that the plus btn is disabled', async () => {
-        const isButtonEnabled = await landingPage.isButtonEnabled("Plus");
-        const expectedState = "disabled";
+    //     const actualDropDownCount = await landingPage.getVisibleChildrenDropdownCount();
+    //     expect(actualDropDownCount).to.equal(2)
+    // })
+    // it.only('User verifies that the plus btn is enabled', async () => {
+    //     const isButtonEnabled = await landingPage.isButtonEnabled("Plus");
+    //     const expectedState = "enabled";
 
-        if (expectedState === "enabled") {
-            expect(isButtonEnabled).to.be.true;
-        } else if (expectedState === "disabled") {
-            expect(isButtonEnabled).to.be.false;
-        }
-    })
+    //     if (expectedState === "enabled") {
+    //         expect(isButtonEnabled).to.be.true;
+    //     } else if (expectedState === "disabled") {
+    //         expect(isButtonEnabled).to.be.false;
+    //     }
+    // })
+    // it.only('User verifies that the minus btn is enabled', async () => {
+    //     const isButtonEnabled = await landingPage.isButtonEnabled("Minus");
+    //     const expectedState = "enabled";
 
-    it('User verifies that the minus btn is enabled', async () => {
-        const isButtonEnabled = await landingPage.isButtonEnabled("Minus");
-        const expectedState = "enabled";
+    //     if (expectedState === "enabled") {
+    //         expect(isButtonEnabled).to.be.true;
+    //     } else if (expectedState === "disabled") {
+    //         expect(isButtonEnabled).to.be.false;
+    //     }
+    // })
 
-        if (expectedState === "enabled") {
-            expect(isButtonEnabled).to.be.true;
-        } else if (expectedState === "disabled") {
-            expect(isButtonEnabled).to.be.false;
-        }
-    })
+    // it.only('User selects children as 6', async () => {
+    //     let previousChildrenCount;
+    //     previousChildrenCount = await landingPage.getChildrenNumberValue();
+    //     if (previousChildrenCount == 0) {
+    //         for (let i = 0; i < 6; i++) {
+    //             await landingPage.clickChildrenBtnPlus();
+    //             await browser.pause(2000);
+    //         }
+    //     } else if
+    //         (previousChildrenCount < 6) {
+    //         const toIncrease = 6 - previousChildrenCount;
+    //         for (let i = 0; i < toIncrease; i++) {
+    //             await landingPage.clickChildrenBtnPlus();
+    //             await browser.pause(2000);
+    //         }
+    //     } else {
+    //         const toDecrease = previousChildrenCount - 6;
+    //         for (let i = 0; i < toDecrease; i++) {
+    //             await landingPage.clickChildrenBtnMinus();
+    //             await browser.pause(2000);
+    //         }
+    //     }
+    // })
 
-    it('User selects children as 5', async () => {
-        let previousChildrenCount;
-        previousChildrenCount = await landingPage.getChildrenNumberValue();
-        if (previousChildrenCount == 0) {
-            for (let i = 0; i < 5; i++) {
-                await landingPage.clickChildrenBtnPlus();
-                await browser.pause(2000);
-            }
-        } else if
-            (previousChildrenCount < 5) {
-            const toIncrease = 6 - previousChildrenCount;
-            for (let i = 0; i < toIncrease; i++) {
-                await landingPage.clickChildrenBtnPlus();
-                await browser.pause(2000);
-            }
-        } else {
-            const toDecrease = previousChildrenCount - 5;
-            for (let i = 0; i < toDecrease; i++) {
-                await landingPage.clickChildrenBtnMinus();
-                await browser.pause(2000);
-            }
-        }
-    })
-    it('User verifies that the plus btn is enabled', async () => {
-        const isButtonEnabled = await landingPage.isButtonEnabled("Plus");
-        const expectedState = "enabled";
+    // it.only('User verifies that the plus btn is disabled', async () => {
+    //     const isButtonEnabled = await landingPage.isButtonEnabled("Plus");
+    //     const expectedState = "disabled";
 
-        if (expectedState === "enabled") {
-            expect(isButtonEnabled).to.be.true;
-        } else if (expectedState === "disabled") {
-            expect(isButtonEnabled).to.be.false;
-        }
-    })
-    it('User verifies that the minus btn is enabled', async () => {
-        const isButtonEnabled = await landingPage.isButtonEnabled("Minus");
-        const expectedState = "enabled";
+    //     if (expectedState === "enabled") {
+    //         expect(isButtonEnabled).to.be.true;
+    //     } else if (expectedState === "disabled") {
+    //         expect(isButtonEnabled).to.be.false;
+    //     }
+    // })
 
-        if (expectedState === "enabled") {
-            expect(isButtonEnabled).to.be.true;
-        } else if (expectedState === "disabled") {
-            expect(isButtonEnabled).to.be.false;
-        }
-    })
+    // it.only('User verifies that the minus btn is enabled', async () => {
+    //     const isButtonEnabled = await landingPage.isButtonEnabled("Minus");
+    //     const expectedState = "enabled";
 
-    it('User selects children as 0', async () => {
-        let previousChildrenCount;
-        previousChildrenCount = await landingPage.getChildrenNumberValue();
-        if (previousChildrenCount == 0) {
-            for (let i = 0; i < 5; i++) {
-                await landingPage.clickChildrenBtnPlus();
-                await browser.pause(2000);
-            }
-        } else if
-            (previousChildrenCount < 0) {
-            const toIncrease = 0 - previousChildrenCount;
-            for (let i = 0; i < toIncrease; i++) {
-                await landingPage.clickChildrenBtnPlus();
-                await browser.pause(2000);
-            }
-        } else {
-            const toDecrease = previousChildrenCount - 0;
-            for (let i = 0; i < toDecrease; i++) {
-                await landingPage.clickChildrenBtnMinus();
-                await browser.pause(2000);
-            }
-        }
-    })
-    it('User verifies that Children age dropdowns are not displayed', async () => {
-        const isDropdownDisplayed = await landingPage.isChildrenDropdownDisplayed();
-        expect(await isDropdownDisplayed).to.be.false;
-    })
-    it('User verifies that the plus btn is enabled', async () => {
-        const isButtonEnabled = await landingPage.isButtonEnabled("Plus");
-        const expectedState = "enabled";
+    //     if (expectedState === "enabled") {
+    //         expect(isButtonEnabled).to.be.true;
+    //     } else if (expectedState === "disabled") {
+    //         expect(isButtonEnabled).to.be.false;
+    //     }
+    // })
 
-        if (expectedState === "enabled") {
-            expect(isButtonEnabled).to.be.true;
-        } else if (expectedState === "disabled") {
-            expect(isButtonEnabled).to.be.false;
-        }
-    })
-    it('User verifies that the minus btn is disabled', async () => {
-        const isButtonEnabled = await landingPage.isButtonEnabled("Minus");
-        const expectedState = "disabled";
+    // it.only('User selects children as 5', async () => {
+    //     let previousChildrenCount;
+    //     previousChildrenCount = await landingPage.getChildrenNumberValue();
+    //     if (previousChildrenCount == 0) {
+    //         for (let i = 0; i < 5; i++) {
+    //             await landingPage.clickChildrenBtnPlus();
+    //             await browser.pause(2000);
+    //         }
+    //     } else if
+    //         (previousChildrenCount < 5) {
+    //         const toIncrease = 6 - previousChildrenCount;
+    //         for (let i = 0; i < toIncrease; i++) {
+    //             await landingPage.clickChildrenBtnPlus();
+    //             await browser.pause(2000);
+    //         }
+    //     } else {
+    //         const toDecrease = previousChildrenCount - 5;
+    //         for (let i = 0; i < toDecrease; i++) {
+    //             await landingPage.clickChildrenBtnMinus();
+    //             await browser.pause(2000);
+    //         }
+    //     }
+    // })
+    // it.only('User verifies that the plus btn is enabled', async () => {
+    //     const isButtonEnabled = await landingPage.isButtonEnabled("Plus");
+    //     const expectedState = "enabled";
 
-        if (expectedState === "enabled") {
-            expect(isButtonEnabled).to.be.true;
-        } else if (expectedState === "disabled") {
-            expect(isButtonEnabled).to.be.false;
-        }
-    })
+    //     if (expectedState === "enabled") {
+    //         expect(isButtonEnabled).to.be.true;
+    //     } else if (expectedState === "disabled") {
+    //         expect(isButtonEnabled).to.be.false;
+    //     }
+    // })
+    // it.only('User verifies that the minus btn is enabled', async () => {
+    //     const isButtonEnabled = await landingPage.isButtonEnabled("Minus");
+    //     const expectedState = "enabled";
+
+    //     if (expectedState === "enabled") {
+    //         expect(isButtonEnabled).to.be.true;
+    //     } else if (expectedState === "disabled") {
+    //         expect(isButtonEnabled).to.be.false;
+    //     }
+    // })
+
+    // it.only('User selects children as 0', async () => {
+    //     let previousChildrenCount;
+    //     previousChildrenCount = await landingPage.getChildrenNumberValue();
+    //     if (previousChildrenCount == 0) {
+    //         for (let i = 0; i < 5; i++) {
+    //             await landingPage.clickChildrenBtnPlus();
+    //             await browser.pause(2000);
+    //         }
+    //     } else if
+    //         (previousChildrenCount < 0) {
+    //         const toIncrease = 0 - previousChildrenCount;
+    //         for (let i = 0; i < toIncrease; i++) {
+    //             await landingPage.clickChildrenBtnPlus();
+    //             await browser.pause(2000);
+    //         }
+    //     } else {
+    //         const toDecrease = previousChildrenCount - 0;
+    //         for (let i = 0; i < toDecrease; i++) {
+    //             await landingPage.clickChildrenBtnMinus();
+    //             await browser.pause(2000);
+    //         }
+    //     }
+    // })
+    // it.only('User verifies that Children age dropdowns are not displayed', async () => {
+    //     const isDropdownDisplayed = await landingPage.isChildrenDropdownDisplayed();
+    //     expect(await isDropdownDisplayed).to.be.false;
+    // })
+    // it('User verifies that the plus btn is enabled', async () => {
+    //     const isButtonEnabled = await landingPage.isButtonEnabled("Plus");
+    //     const expectedState = "enabled";
+
+    //     if (expectedState === "enabled") {
+    //         expect(isButtonEnabled).to.be.true;
+    //     } else if (expectedState === "disabled") {
+    //         expect(isButtonEnabled).to.be.false;
+    //     }
+    // })
+    // it.only('User verifies that the minus btn is disabled', async () => {
+    //     const isButtonEnabled = await landingPage.isButtonEnabled("Minus");
+    //     const expectedState = "disabled";
+
+    //     if (expectedState === "enabled") {
+    //         expect(isButtonEnabled).to.be.true;
+    //     } else if (expectedState === "disabled") {
+    //         expect(isButtonEnabled).to.be.false;
+    //     }
+    // })
 
     // Verify language can be changed successfully
     it('User clicks on the English language', async () => {
@@ -279,44 +295,147 @@ describe('Sprint 1', () => {
     })
 
     // verify list your property flow
-    it.only('User clicks on List your property', async () => {
+    it('User clicks on List your property', async () => {
         await landingPage.clickListYourProperty();
         await browser.pause(2000);
     })
-    it.only('User verifies what would you like to list is displayed', async () => {
-        await browser.pause(2000);
-        const allHandles = await browser.getWindowHandles();  // Get all window handles
-        for (const handle of allHandles) {
-            await browser.switchToWindow(handle);  // Switch to each handle
-            const title = await browser.getTitle();  // Get the title of the window
-            if (title.includes('List Your Property')) {
-                // Verify if "What would you like to list" is displayed
-                const isListDisplayed = await listYourPropertyPage.isWhatWouldYouLikeToListDisplayed();
-                expect(isListDisplayed).to.be.true;  // Correct assertion without parentheses
-                return;  // Exit the loop after the check is done
-            }
-        }
-    });
+    // it.only('User verifies what would you like to list is displayed', async () => {
+    //     await browser.pause(2000);  // Pause to ensure the page is loaded
+    //     const allHandles = await browser.getWindowHandles();  // Get all window handles
+    //     for (const handle of allHandles) {
+    //         await browser.switchToWindow(handle);  // Switch to each handle
+    //         const title = await browser.getTitle();  // Get the title of the window
+    //         if (title.includes('List Your Hotel, Apartment,')) {
+    //             // Verify if "What would you like to list" is displayed
+    //             const isListDisplayed = await listYourPropertyPage.isWhatWouldYouLikeToListDisplayed();
+    //             expect(isListDisplayed).to.be.true;  // Assert that the element is displayed
+    //             return;  // Exit the loop after the check is done
+    //         }
+    //     }
+    // })
 
-    it.only('User verifies Lodging and Private residence options are displayed', async () => {
+    // it.only('User verifies Lodging and Private residence options are displayed', async () => {
+    //     await browser.pause(2000);
+    //     const allHandles = await browser.getWindowHandles();  // Get all window handles
+    //     for (const handle of allHandles) {
+    //         await browser.switchToWindow(handle);  // Switch to each handle
+    //         const title = await browser.getTitle();  // Get the title of the window
+    //         if (title.includes('List Your Hotel, Apartment,')) {
+    //             const isLodgingDisplayed = await listYourPropertyPage.isLodgingDisplayed();
+    //         const isPrivateResidenceDisplayed = await listYourPropertyPage.isPrivateResidenceDisplayed();
+    //         expect(isLodgingDisplayed).to.be.true;
+    //         expect(isPrivateResidenceDisplayed).to.be.true;
+    //         return;
+    //         }
+    //     }
+    // })
+
+    // Problem
+    it.only('User clicks on private residence btn', async () => {
+        await browser.url('https://www.hotels.com/')
+        await browser.pause(5000);
+        await landingPage.clickTradeMarkToRefresh();
+        await browser.maximizeWindow();
+        await browser.pause(4000);
+        await landingPage.clickListYourProperty();
         await browser.pause(2000);
+        
         const allHandles = await browser.getWindowHandles();  // Get all window handles
         for (const handle of allHandles) {
             await browser.switchToWindow(handle);  // Switch to each handle
             const title = await browser.getTitle();  // Get the title of the window
-            if (title.includes('List Your Property')) {
-                const isLodgingDisplayed = await listYourPropertyPage.isLodgingDisplayed();
-            const isPrivateResidenceDisplayed = await listYourPropertyPage.isPrivateResidenceDisplayed();
-            expect(isLodgingDisplayed).to.be.true();
-            expect(isPrivateResidenceDisplayed).to.be.true();
-            return;
+            if (title.includes('List Your Hotel, Apartment,')) {
+                break;
             }
         }
-    })
-    it.only('User clicks on private residence btn', async () => {
         await listYourPropertyPage.clickPrivateResidence();
         await browser.pause(2000);
+        await browser.pause(5000);
     })
+
+
+    
+    it('User enters 4 as bedroom', async () => {
+
+    await browser.pause(2000);
+    const allHandles = await browser.getWindowHandles();  // Get all window handles
+    for (const handle of allHandles) {
+    await browser.switchToWindow(handle);  // Switch to each handle
+    const title = await browser.getTitle();  // Get the title of the window
+    if (title.includes('List Your Apartment, Home,')) {
+    let previousRoomCount;
+    previousRoomCount = await privateResidencePage.getBedroomNumberValue();
+
+    if (previousRoomCount == 0) {
+        for (let i = 0; i < 4; i++) {
+        await privateResidencePage.clickBedroomBtnPlus();
+        await browser.pause(1000);
+        }
+        } else if (previousRoomCount < 4) {
+        const toIncrease = 4 - previousRoomCount;
+        for (let i = 0; i < toIncrease; i++) {
+            await privateResidencePage.clickBedroomBtnPlus();
+            await browser.pause(1000);
+            }
+        } else {
+        const toDecrease = previousRoomCount - 4;
+        for (let i = 0; i < toDecrease; i++) {
+        await privateResidencePage.clickBedroomBtnMinus();
+        await browser.pause(1000);
+                    }
+                }
+            }
+        }
+
+    })    
+  
+    
+    it('User enters 2.5 as bathroom', async () => {
+
+        await browser.pause(2000);
+        const allHandles = await browser.getWindowHandles();  // Get all window handles
+        for (const handle of allHandles) {
+        await browser.switchToWindow(handle);  // Switch to each handle
+        const title = await browser.getTitle();  // Get the title of the window
+        if (title.includes('List Your Apartment,')) {
+        let previousRoomCount;
+        previousRoomCount = await privateResidencePage.getBathroomNumberValue();
+    
+        if (previousRoomCount == 0) {
+            for (let i = 0; i < 4; i++) {
+            await privateResidencePage.clickBathroomBtnPlus();
+            await browser.pause(1000);
+            }
+            } else if (previousRoomCount < 4) {
+            const toIncrease = 4 - previousRoomCount;
+            for (let i = 0; i < toIncrease; i++) {
+                await privateResidencePage.clickBathroomBtnPlus();
+                await browser.pause(1000);
+                }
+            } else {
+            const toDecrease = previousRoomCount - 4;
+            for (let i = 0; i < toDecrease; i++) {
+            await privateResidencePage.clickBedroomBtnMinus();
+            await browser.pause(1000);
+                        }
+                    }
+                }
+            }
+        })    
+it('User clicks Next Btn', async () => {
+    
+    await browser.pause(2000);
+    const allHandles = await browser.getWindowHandles();  // Get all window handles
+    for (const handle of allHandles) {
+        await browser.switchToWindow(handle);  // Switch to each handle
+        const title = await browser.getTitle();  // Get the title of the window
+        if (title.includes('List Your Apartment,')) {
+        await privateResidencePage.clickNextBtn();
+        await browser.pause(3000);
+        }
+    }
+})
+
 })
 
 

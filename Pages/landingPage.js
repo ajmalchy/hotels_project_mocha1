@@ -89,8 +89,10 @@ class Landingpage {
     // problem
     async getVisibleChildrenDropdownCount() {
         const dropdownElements = await $$(this.allChildDropdownLocators);
-        return await dropdownElements.filter((element) => element.isDisplayed()).length;
+        return await dropdownElements.length;
+       
         
+
     }
     async isChildrenDropdownDisplayed() {
         const dropdownElements = await $$(this.allChildDropdownLocators);
