@@ -28,7 +28,7 @@ describe('login page testing', () => {
 
     })
 
-    it.only('Enter name and email address and click signup btn', async () => {
+    it('Enter name and email address and click signup btn', async () => {
         /**
          * 1. user goes to automation website
          * 2.user click signup or login btn and go to that page
@@ -47,7 +47,7 @@ describe('login page testing', () => {
 
         await automationLoginPage.enterNewUserName("Kamla Shundori");
 
-        await automationLoginPage.enterNewUserEmail("kamlaShundori@yahoo.com");
+        await automationLoginPage.enterNewUserEmail("kamlaShundori42@yahoo.com");
        
         // user clicks signup btn
         await automationLoginPage.clickSignupBtn();

@@ -25,7 +25,7 @@ describe('Verify landing page', () => {
     expect(isHomeBtnOrange).to.be.true;
     })
 
-    it.only('click signup btn', async () => {
+    it('click signup btn', async () => {
         // user goes to automation website
         await browser.url('https://automationexercise.com/');
         await browser.pause(3000);
