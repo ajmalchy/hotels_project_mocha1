@@ -4,6 +4,7 @@ const automationLoginPage = require("../../Pages/automationLoginPage");
 const automationSignupPage = require("../../Pages/automationSignupPage");
 const automationAccountCreatedPage = require("../../Pages/automationAccountCreatedPage");
 const automationLoggedinPage = require("../../Pages/automationLoggedinPage");
+const automationAccountDeletePage = require("../../Pages/automationAccountDeletePage");
 
 describe('Signup Page testing', () => {
 
@@ -44,7 +45,7 @@ describe('Signup Page testing', () => {
         await automationLoginPage.enterNewUserName("Kamla Shundori1");
 
         await browser.pause(3000);
-        await automationLoginPage.enterNewUserEmail("kamlaShundori56555354@yahoo.com");
+        await automationLoginPage.enterNewUserEmail("kamlaShundori707@yahoo.com");
         await browser.pause(3000);
         await automationLoginPage.clickSignupBtn();
         await browser.pause(3000);
@@ -108,9 +109,12 @@ describe('Signup Page testing', () => {
 
         await automationAccountCreatedPage.clickContinue();
 
-
+        await automationLoggedinPage.isLoggedinAsUserDisplayed();
         await automationLoggedinPage.clickDeleteAccount();
 
+        await automationAccountDeletePage.isAccountDeletedDisplayed();
+
+        await automationAccountDeletePage.clickContinueBtn();
 
 
 
