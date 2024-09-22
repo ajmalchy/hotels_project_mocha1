@@ -3,6 +3,9 @@ class AutomationLandingPage {
     homeBtnLocator = '//a[@style="color: orange;" and text()=" Home"]';
 
     signupBtnLocator = '//a[@href="/login"]';
+
+    contactUsBtnLocator = '//a[@href="/contact_us"]';
+
     // functions to interact with the page elements
 
     async isHomeBtnOrange() {
@@ -17,10 +20,22 @@ class AutomationLandingPage {
     }
 
     async clickSignupOrLoginBtn() {
-        await browser.pause(3000);
         await $(this.signupBtnLocator).click();
     }
 
+    async selectFromNavbar(option) {
+        switch (option) {
+            case "Signup / Login":
+                await $(this.signupBtnLocator).click();
+                break;
+            case "Contact Us":
+                await $(this.contactUsBtnLocator).click();
+                break;
+        
+            default:
+                break;
+        }
+    }
 
 }
 
