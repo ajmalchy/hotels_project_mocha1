@@ -6,6 +6,8 @@ class AutomationLandingPage {
 
     contactUsBtnLocator = '//a[@href="/contact_us"]';
 
+    productsBtnLocator = '//a[@href="/products"]';
+
     // functions to interact with the page elements
 
     async isHomeBtnOrange() {
@@ -30,6 +32,9 @@ class AutomationLandingPage {
                 break;
             case "Contact Us":
                 await $(this.contactUsBtnLocator).click();
+                break;
+            case "Products":
+                await $(this.productsBtnLocator).click();
                 break;
         
             default:
